@@ -9,7 +9,7 @@
 ## How to build
 
 - npm run build / yarn build
-- Copy all content from the "public folder to the server
+- Copy all content from the "public" folder to the server
 
 ## Backlog
 
