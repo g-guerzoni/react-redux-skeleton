@@ -1,5 +1,5 @@
 import axios from "axios";
-import { header } from "../contants/api";
+import { header } from "../constants/api";
 import { getAuthToken } from "../utils/localStorage";
 
 const request = async params => {
