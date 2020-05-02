@@ -1,10 +1,10 @@
-# Default Project
+# React Redux Skeleton Project
 
 ## How to run
 
 - npm install / yarn
 - npm run start / yarn start
-- http://localhost:3003
+- Access: http://localhost:3003
 
 ## How to build
 
@@ -20,6 +20,7 @@
 ### Version 1.0.1
 
 - Components update
-- React Lazy
-- Color palette
+- Change CS to React Lazy
+- Add color palette
 - Libs update
+- Services update

@@ -18,7 +18,7 @@ const Loading = ({ full, width, height }) => (
       link="http://www.w3.org/1999/xlink"
       version="1.0"
       width={width}
-      height={height || "64px"}
+      height={height}
       viewBox="0 0 128 128"
       pace="preserve"
     >

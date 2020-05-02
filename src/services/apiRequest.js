@@ -1,25 +1,12 @@
 import axios from "axios";
-import { header } from "../constants/api";
-import { getAuthToken } from "../utils/localStorage";
 
-const request = async params => {
+const request = async (params) => {
   try {
-    const headers = {
-      ...params.headers,
-      Authorization: ""
-    };
-
-    let axiosObject = {
-      withCredentials: false,
-      ...params,
-      headers: headers
-    };
-
     axios.defaults.timeout = 60000;
 
-    let response = await axios(axiosObject);
+    let response = await axios({ ...params, withCredentials: false });
 
-    if (response && response.data && response.data.errorMessage) {
+    if (response?.data?.errorMessage) {
       return { data: response, status: 500 };
     }
 
@@ -27,7 +14,7 @@ const request = async params => {
   } catch (err) {
     console.error(err.response);
 
-    if (err.response && err.response.status === 401) {
+    if (err?.response?.status === 401) {
       window.location.reload();
     }
 
@@ -36,29 +23,29 @@ const request = async params => {
 };
 
 export default {
-  get: props =>
+  get: (props) =>
     request({
       ...props,
-      method: "GET"
+      method: "GET",
     }),
-  post: props =>
+  post: (props) =>
     request({
       ...props,
-      method: "POST"
+      method: "POST",
     }),
-  put: props =>
+  put: (props) =>
     request({
       ...props,
-      method: "PUT"
+      method: "PUT",
     }),
-  patch: props =>
+  patch: (props) =>
     request({
       ...props,
-      method: "PATCH"
+      method: "PATCH",
     }),
-  delete: props =>
+  delete: (props) =>
     request({
       ...props,
-      method: "DELETE"
-    })
+      method: "DELETE",
+    }),
 };
