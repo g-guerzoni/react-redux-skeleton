@@ -2,10 +2,6 @@ import React from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import palette from "../../constants/palette";
 
-// REDUX
-import { connect } from "react-redux";
-import { notificationClearMessage } from "../../redux/actions/notificationAction";
-
 // COMPONENTS
 import Grid from "@material-ui/core/Grid";
 import Loading from "../../components/Loading";
@@ -40,27 +36,11 @@ const theme = createMuiTheme({
   },
 });
 
-const mapSateToProps = (store) => {
-  const { type, active, message } = store?.notification?.snackBar;
-  return { type, active, message };
-};
-
-const SnakBarComponent = connect(mapSateToProps, {
-  notificationClearMessage,
-})(({ active, message, type, notificationClearMessage }) => (
-  <SnackBar
-    open={active}
-    type={type}
-    message={message}
-    closeSnackBar={notificationClearMessage}
-  />
-));
-
 const Routes = () => (
   <MuiThemeProvider theme={theme}>
     <Router>
       <React.Suspense fallback={<ComponentLoading />}>
-        <SnakBarComponent />
+        <SnackBar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/404" component={Error404} />

@@ -14,7 +14,7 @@ const notification = (state = initialState, action) => {
       return {
         ...state,
         snackBar: {
-          type: action.type,
+          type: action.notificationType,
           active: true,
           message: action.message,
         },
@@ -44,9 +44,8 @@ const notification = (state = initialState, action) => {
       return {
         ...state,
         snackBar: {
-          type: state.snackBar.type,
+          ...state.snackBar,
           active: false,
-          message: undefined,
         },
       };
 

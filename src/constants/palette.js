@@ -7,6 +7,6 @@ export default {
   greyDark: "#353535",
 
   error: "#f76262",
-  warning: "#f7be16",
+  warning: "#f0a902",
   success: "#1fab89",
 };

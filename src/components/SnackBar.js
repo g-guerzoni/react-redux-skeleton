@@ -2,42 +2,50 @@ import React from "react";
 import PropTypes from "prop-types";
 import palette from "../constants/palette";
 
+// REDUX
+import { connect } from "react-redux";
+import { notificationClearMessage } from "../redux/actions/notificationAction";
+
 // COMPONENTS
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
-
-const styles = makeStyles({
-  closeButton: {
-    color: "#ffffff",
-  },
-});
 
 const types = { success: "success", warning: "warning", error: "error" };
 
-const SnackBar = ({ open, type, message, closeSnackBar }) => (
-  <Snackbar
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "left",
-    }}
-    open={open}
-    variant="error"
-    autoHideDuration={6000}
-    onClose={closeSnackBar}
-  >
-    <SnackbarContent
-      style={{ backgroundColor: palette[types[type]] }}
-      message={<span>{message}</span>}
-      action={
-        <Button className={styles().closeButton} onClick={closeSnackBar}>
-          Fechar
-        </Button>
-      }
-    />
-  </Snackbar>
-);
+const SnackBar = ({ active, type, message, notificationClearMessage }) => {
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    return notificationClearMessage();
+  };
+
+  return (
+    <Snackbar
+      open={active}
+      autoHideDuration={6000}
+      onClose={handleClose}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "left",
+      }}
+    >
+      <SnackbarContent
+        style={{
+          backgroundColor: palette[types[type.toLowerCase()]],
+        }}
+        message={<span>{message}</span>}
+        action={
+          <Button onClick={handleClose} style={{ color: "white" }}>
+            Fechar
+          </Button>
+        }
+      />
+    </Snackbar>
+  );
+};
 
 SnackBar.propTypes = {
   open: PropTypes.bool.isRequired,
@@ -51,4 +59,11 @@ SnackBar.defaultProps = {
   message: "No message defined",
 };
 
-export default SnackBar;
+const mapSateToProps = (store) => {
+  const { type, active, message } = store?.notification?.snackBar;
+  return { type, active, message };
+};
+
+export default connect(mapSateToProps, {
+  notificationClearMessage,
+})(SnackBar);

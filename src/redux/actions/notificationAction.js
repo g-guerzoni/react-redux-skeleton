@@ -1,9 +1,9 @@
 import Type from "../types/notificationType";
 
-export const notificationSetMessage = (message, type) => ({
+export const notificationSetMessage = (message, notificationType) => ({
   type: Type.NOTIFICATION_SET_MESSAGE,
   message,
-  type,
+  notificationType,
 });
 
 export const notificationClearMessage = () => ({
