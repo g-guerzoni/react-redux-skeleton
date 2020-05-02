@@ -1,26 +1,26 @@
 import React from "react";
+import PropTypes from "prop-types";
+import palette from "../constants/palette";
 
 // COMPONENTS
-import { error, success } from "./color";
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
-import withStyles from "@material-ui/core/styles/withStyles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 
-const styles = {
-  root: {
-    backgroundColor: error
-  },
+const styles = makeStyles({
   closeButton: {
-    color: "#ffffff"
-  }
-};
+    color: "#ffffff",
+  },
+});
 
-const SnackBar = ({ open, type, message, classes, closeSnackBar }) => (
+const types = { success: "success", warning: "warning", error: "error" };
+
+const SnackBar = ({ open, type, message, closeSnackBar }) => (
   <Snackbar
     anchorOrigin={{
       vertical: "bottom",
-      horizontal: "left"
+      horizontal: "left",
     }}
     open={open}
     variant="error"
@@ -28,10 +28,10 @@ const SnackBar = ({ open, type, message, classes, closeSnackBar }) => (
     onClose={closeSnackBar}
   >
     <SnackbarContent
-      style={{ backgroundColor: type === "error" ? error : success }}
-      message={<span>{message || "No message"}</span>}
+      style={{ backgroundColor: palette[types[type]] }}
+      message={<span>{message}</span>}
       action={
-        <Button className={classes.closeButton} onClick={closeSnackBar}>
+        <Button className={styles().closeButton} onClick={closeSnackBar}>
           Fechar
         </Button>
       }
@@ -39,4 +39,16 @@ const SnackBar = ({ open, type, message, classes, closeSnackBar }) => (
   </Snackbar>
 );
 
-export default withStyles(styles)(SnackBar);
+SnackBar.propTypes = {
+  open: PropTypes.bool.isRequired,
+  type: PropTypes.string,
+  message: PropTypes.string,
+  closeSnackBar: PropTypes.func.isRequired,
+};
+
+SnackBar.defaultProps = {
+  type: "success",
+  message: "No message defined",
+};
+
+export default SnackBar;
