@@ -8,7 +8,6 @@ import Loading from "../../components/Loading";
 import SnackBar from "../../components/SnackBar";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
 
 const ComponentLoading = () => (
   <Grid container direction="row" justify="center" alignItems="center">
@@ -19,7 +18,6 @@ const ComponentLoading = () => (
 const Home = React.lazy(() => import("../Home"));
 const Error404 = React.lazy(() => import("../Errors/error404"));
 
-const breakpoints = createBreakpoints({});
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -29,10 +27,12 @@ const theme = createMuiTheme({
       main: palette["secondary"],
     },
   },
-  breakpoints,
   typography: {
     fontFamily: "Texta",
     useNextVariants: true,
+    h1: {
+      fontSize: 28,
+    },
   },
 });
 

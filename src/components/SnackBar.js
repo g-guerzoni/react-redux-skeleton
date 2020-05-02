@@ -48,10 +48,10 @@ const SnackBar = ({ active, type, message, notificationClearMessage }) => {
 };
 
 SnackBar.propTypes = {
-  open: PropTypes.bool.isRequired,
+  active: PropTypes.bool.isRequired,
   type: PropTypes.string,
   message: PropTypes.string,
-  closeSnackBar: PropTypes.func.isRequired,
+  notificationClearMessage: PropTypes.func.isRequired,
 };
 
 SnackBar.defaultProps = {

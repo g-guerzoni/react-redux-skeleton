@@ -7,9 +7,10 @@ import { notificationSetMessage } from "../../redux/actions/notificationAction";
 
 // COMPONENTS
 import Grid from "@material-ui/core/Grid";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import Button from "../../components/inputs/Button";
+import Typography from "@material-ui/core/Typography";
 import TextField from "../../components/inputs/TextField";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const styles = makeStyles({
   content: {
@@ -42,8 +43,10 @@ const Home = ({ notificationSetMessage }) => {
 
   return (
     <Grid className={classes.content}>
-      <h2>Newslatter:</h2>
-      <p>Insert your email</p>
+      <Typography variant="h1">Newsletter (fake)</Typography>
+      <Typography variant="body1">
+        Insert your email to receive updates
+      </Typography>
       <Grid container>
         <TextField
           label="Email"
