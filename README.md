@@ -16,3 +16,10 @@
 ### Version 1.0.0
 
 - Basic Structure
+
+### Version 1.0.1
+
+- Components update
+- React Lazy
+- Color palette
+- Libs update

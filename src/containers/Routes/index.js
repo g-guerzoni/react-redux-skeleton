@@ -4,7 +4,7 @@ import palette from "../../constants/palette";
 
 // REDUX
 import { connect } from "react-redux";
-import { clearErrorMessage } from "../../redux/actions/errorAction";
+import { notificationClearMessage } from "../../redux/actions/notificationAction";
 
 // COMPONENTS
 import Grid from "@material-ui/core/Grid";
@@ -41,18 +41,18 @@ const theme = createMuiTheme({
 });
 
 const mapSateToProps = (store) => {
-  const { type, active, message } = store?.error?.snackBar;
+  const { type, active, message } = store?.notification?.snackBar;
   return { type, active, message };
 };
 
 const SnakBarComponent = connect(mapSateToProps, {
-  clearErrorMessage,
-})(({ active, message, type, clearErrorMessage }) => (
+  notificationClearMessage,
+})(({ active, message, type, notificationClearMessage }) => (
   <SnackBar
     open={active}
     type={type}
     message={message}
-    closeSnackBar={clearErrorMessage}
+    closeSnackBar={notificationClearMessage}
   />
 ));
 

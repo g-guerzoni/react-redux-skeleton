@@ -1,5 +1,5 @@
-import error from "./errorReducer";
+import notification from "./notificationReducer";
 
 export default {
-  error
+  notification,
 };
