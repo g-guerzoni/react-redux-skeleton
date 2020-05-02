@@ -9,7 +9,9 @@ const sagaMiddleware = new createSagaMiddleware();
 
 const Store = createStore(
   combineReducers(Reducers),
-  applyMiddleware(sagaMiddleware, logger)
+  process.env.NODE_ENV === "development"
+    ? applyMiddleware(sagaMiddleware, logger)
+    : applyMiddleware(sagaMiddleware)
 );
 
 sagaMiddleware.run(saga);
