@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Loadable from "react-loadable";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import palette from "../../constants/palette";
@@ -56,32 +55,32 @@ const theme = createMuiTheme({
   },
 });
 
-const Routes = ({ active, message, type, clearErrorMessage }) => (
+const mapSateToProps = (store) => {
+  const { type, active, message } = store?.error?.snackBar;
+  return { type, active, message };
+};
+
+const SnakBarComponent = connect(mapSateToProps, {
+  clearErrorMessage,
+})(({ active, message, type, clearErrorMessage }) => (
+  <SnackBar
+    open={active}
+    type={type}
+    message={message}
+    closeSnackBar={clearErrorMessage}
+  />
+));
+
+const Routes = () => (
   <MuiThemeProvider theme={theme}>
     <Router>
-      <SnackBar
-        open={active}
-        type={type}
-        message={message}
-        closeSnackBar={clearErrorMessage}
-      />
+      <SnakBarComponent />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/word-list" component={Home} />
         <Route component={Error404} />
       </Switch>
     </Router>
   </MuiThemeProvider>
 );
 
-Routes.propTypes = {
-  error: PropTypes.object,
-};
-
-const mapSateToProps = (store) => ({
-  type: store.error.snackBar.type,
-  active: store.error.snackBar.active,
-  message: store.error.snackBar.message,
-});
-
-export default connect(mapSateToProps, { clearErrorMessage })(Routes);
+export default Routes;
