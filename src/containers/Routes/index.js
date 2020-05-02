@@ -1,5 +1,4 @@
 import React from "react";
-import Loadable from "react-loadable";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import palette from "../../constants/palette";
 
@@ -15,28 +14,14 @@ import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
 
-const loading = ({ error }) => {
-  if (error) {
-    console.error(error);
-    return "Error!";
-  } else {
-    return (
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Loading full colored height="80px" width="80px" />
-      </Grid>
-    );
-  }
-};
+const ComponentLoading = () => (
+  <Grid container direction="row" justify="center" alignItems="center">
+    <Loading full colored height="80px" width="80px" />
+  </Grid>
+);
 
-const Home = Loadable({
-  loader: () => import("../Home"),
-  loading,
-});
-
-const Error404 = Loadable({
-  loader: () => import("../Errors/error404"),
-  loading,
-});
+const Home = React.lazy(() => import("../Home"));
+const Error404 = React.lazy(() => import("../Errors/error404"));
 
 const breakpoints = createBreakpoints({});
 const theme = createMuiTheme({
@@ -74,11 +59,14 @@ const SnakBarComponent = connect(mapSateToProps, {
 const Routes = () => (
   <MuiThemeProvider theme={theme}>
     <Router>
-      <SnakBarComponent />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route component={Error404} />
-      </Switch>
+      <React.Suspense fallback={<ComponentLoading />}>
+        <SnakBarComponent />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/404" component={Error404} />
+          <Route component={Error404} />
+        </Switch>
+      </React.Suspense>
     </Router>
   </MuiThemeProvider>
 );
