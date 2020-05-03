@@ -24,6 +24,7 @@ const SnackBar = ({ active, type, message, notificationClearMessage }) => {
 
   return (
     <Snackbar
+      data-testid="snackbar"
       open={active}
       autoHideDuration={6000}
       onClose={handleClose}
@@ -60,7 +61,7 @@ SnackBar.defaultProps = {
 };
 
 const mapSateToProps = (store) => {
-  const { type, active, message } = store?.notification?.snackBar;
+  const { type, active, message } = store?.notification;
   return { type, active, message };
 };
 

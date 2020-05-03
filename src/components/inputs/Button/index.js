@@ -10,6 +10,7 @@ const Button = ({ loading, disabled, children, color, onClick, ...rest }) => {
     <MuiButton
       variant="contained"
       color={color}
+      style={{ height: 40 }}
       onClick={disabled ? () => {} : onClick}
       {...rest}
     >

@@ -2,6 +2,12 @@
 
 ### UI: Material UI
 
+https://material-ui.com/
+
+### Test: React Testing Library / Jest
+
+https://testing-library.com/
+
 ## How to run
 
 - npm install / yarn
@@ -15,14 +21,18 @@
 
 ## Backlog
 
-### Version 1.0.0
+### Version 1.2.0
 
-- Basic Structure
+- Test cases (React Testing Library)
 
-### Version 1.0.1
+### Version 1.1.0
 
 - Components update
 - Change CS to React Lazy
 - Add color palette
 - Libs update
 - Services update
+
+### Version 1.0.0
+
+- Basic Structure

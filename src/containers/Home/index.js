@@ -11,6 +11,7 @@ import Button from "components/inputs/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "components/inputs/TextField";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import palette from "constants/palette";
 
 const styles = makeStyles({
   content: {
@@ -19,6 +20,7 @@ const styles = makeStyles({
   button: {
     margin: "0 5px",
   },
+  error: { color: palette["error"] },
 });
 
 const Home = ({ notificationSetMessage }) => {
@@ -48,13 +50,29 @@ const Home = ({ notificationSetMessage }) => {
         Insert your email to receive updates
       </Typography>
       <Grid container>
-        <TextField
-          label="Email"
-          error={error}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        ></TextField>
-        <Button className={classes.button} onClick={subscribe}>
+        <Grid>
+          <TextField
+            label="Email"
+            error={error}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            inputProps={{ "data-testid": "home-input-email" }}
+          ></TextField>
+          {error && (
+            <Typography
+              className={classes.error}
+              data-testid="home-error-message"
+            >
+              Invalid email
+            </Typography>
+          )}
+        </Grid>
+
+        <Button
+          data-testid="home-btn-subscribe"
+          className={classes.button}
+          onClick={subscribe}
+        >
           Subscribe
         </Button>
       </Grid>
