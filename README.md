@@ -1,5 +1,7 @@
 # React Redux Skeleton Project
 
+### UI: Material UI
+
 ## How to run
 
 - npm install / yarn
