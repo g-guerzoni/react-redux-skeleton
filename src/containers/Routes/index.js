@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import palette from "../../constants/palette";
+import palette from "constants/palette";
 
 // COMPONENTS
 import Grid from "@material-ui/core/Grid";
-import Loading from "../../components/Loading";
-import SnackBar from "../../components/SnackBar";
+import Loading from "components/Loading";
+import SnackBar from "components/SnackBar";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 
@@ -15,8 +15,8 @@ const ComponentLoading = () => (
   </Grid>
 );
 
-const Home = React.lazy(() => import("../Home"));
-const Error404 = React.lazy(() => import("../Errors/error404"));
+const Home = React.lazy(() => import("containers/Home"));
+const Error404 = React.lazy(() => import("containers/Errors/error404"));
 
 const theme = createMuiTheme({
   palette: {

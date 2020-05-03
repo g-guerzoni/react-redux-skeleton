@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import palette from "../constants/palette";
+import palette from "constants/palette";
 
 // REDUX
 import { connect } from "react-redux";
-import { notificationClearMessage } from "../redux/actions/notificationAction";
+import { notificationClearMessage } from "redux/actions/notificationAction";
 
 // COMPONENTS
 import Button from "@material-ui/core/Button";

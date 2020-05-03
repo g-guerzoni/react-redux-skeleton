@@ -1,4 +1,4 @@
-import Type from "../types/notificationType";
+import Type from "redux/types/notificationType";
 
 export const notificationSetMessage = (message, notificationType) => ({
   type: Type.NOTIFICATION_SET_MESSAGE,

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // COMPOENTS
-import Loading from "../Loading";
+import Loading from "components/Loading";
 import MuiButton from "@material-ui/core/Button";
 
 const Button = ({ loading, disabled, children, color, onClick, ...rest }) => {

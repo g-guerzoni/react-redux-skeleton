@@ -3,13 +3,13 @@ import { isEmail } from "validator";
 
 // REDUX
 import { connect } from "react-redux";
-import { notificationSetMessage } from "../../redux/actions/notificationAction";
+import { notificationSetMessage } from "redux/actions/notificationAction";
 
 // COMPONENTS
 import Grid from "@material-ui/core/Grid";
-import Button from "../../components/inputs/Button";
+import Button from "components/inputs/Button";
 import Typography from "@material-ui/core/Typography";
-import TextField from "../../components/inputs/TextField";
+import TextField from "components/inputs/TextField";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const styles = makeStyles({

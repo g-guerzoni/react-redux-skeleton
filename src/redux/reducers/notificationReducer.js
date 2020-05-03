@@ -1,4 +1,4 @@
-import Type from "../types/notificationType";
+import Type from "redux/types/notificationType";
 
 const initialState = {
   snackBar: {
