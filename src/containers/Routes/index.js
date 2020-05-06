@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import palette from "constants/palette";
 
-// COMPONENTS
 import Grid from "@material-ui/core/Grid";
 import Loading from "components/Loading";
 import SnackBar from "components/SnackBar";
@@ -22,9 +21,23 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: palette["primary"],
+      contrastText: palette["secondary"],
     },
     secondary: {
       main: palette["secondary"],
+      contrastText: palette["primary"],
+    },
+    success: {
+      main: palette["success"],
+    },
+    warning: {
+      main: palette["warning"],
+    },
+    error: {
+      main: palette["error"],
+    },
+    info: {
+      main: palette["grey"],
     },
   },
   typography: {
@@ -32,6 +45,13 @@ const theme = createMuiTheme({
     useNextVariants: true,
     h1: {
       fontSize: 28,
+    },
+    subtitle1: {
+      fontSize: 18,
+    },
+    body1: {
+      fontSize: 16,
+      color: palette["grey"],
     },
   },
 });

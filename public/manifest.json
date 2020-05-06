@@ -1,16 +1,11 @@
 {
-  "short_name": "Sitejet_Challenge",
-  "name": "Sitejet Challenge",
+  "short_name": "React_Redux_Skeleton",
+  "name": "React Redux Skeleton",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "32x32",
       "type": "image/png"
-    },
-    {
-      "src": "images/logo/logo-demo.png",
-      "type": "image/png",
-      "sizes": "192x192"
     }
   ],
   "start_url": ".",

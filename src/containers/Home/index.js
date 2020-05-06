@@ -1,11 +1,10 @@
 import React from "react";
 import { isEmail } from "validator";
 
-// REDUX
 import { connect } from "react-redux";
 import { notificationSetMessage } from "redux/actions/notificationAction";
 
-// COMPONENTS
+import If from "components/If";
 import Grid from "@material-ui/core/Grid";
 import Button from "components/inputs/Button";
 import Typography from "@material-ui/core/Typography";
@@ -49,7 +48,7 @@ const Home = ({ notificationSetMessage }) => {
       <Typography variant="body1">
         Insert your email to receive updates
       </Typography>
-      <Grid container>
+      <Grid container alignItems="center">
         <Grid>
           <TextField
             label="Email"
@@ -58,14 +57,6 @@ const Home = ({ notificationSetMessage }) => {
             onChange={(e) => setEmail(e.target.value)}
             inputProps={{ "data-testid": "home-input-email" }}
           ></TextField>
-          {error && (
-            <Typography
-              className={classes.error}
-              data-testid="home-error-message"
-            >
-              Invalid email
-            </Typography>
-          )}
         </Grid>
 
         <Button
@@ -76,6 +67,11 @@ const Home = ({ notificationSetMessage }) => {
           Subscribe
         </Button>
       </Grid>
+      <If condition={error}>
+        <Typography className={classes.error} data-testid="home-error-message">
+          Invalid email
+        </Typography>
+      </If>
     </Grid>
   );
 };

@@ -1,51 +1,37 @@
 import axios from "axios";
 
-const request = async (params) => {
+const request = async ({ urn, method, data }) => {
   try {
-    axios.defaults.timeout = 60000;
-
-    let response = await axios({ ...params, withCredentials: false });
-
-    if (response?.data?.errorMessage) {
-      return { data: response, status: 500 };
-    }
+    let response = await axios({
+      method: method,
+      data: data,
+      url: process.env.REACT_APP_API_URL + urn,
+    });
 
     return response;
   } catch (err) {
-    console.error(err.response);
-
-    if (err?.response?.status === 401) {
-      window.location.reload();
-    }
-
-    return { data: err.response, status: 500 };
+    return {
+      data: err?.response?.data || "Internal Error",
+      status: err?.response?.status || 500,
+    };
   }
 };
 
 export default {
-  get: (props) =>
+  get: (urn) =>
     request({
-      ...props,
+      urn,
       method: "GET",
     }),
-  post: (props) =>
+  post: (urn, data) =>
     request({
-      ...props,
+      urn,
+      data,
       method: "POST",
     }),
-  put: (props) =>
+  delete: (urn) =>
     request({
-      ...props,
-      method: "PUT",
-    }),
-  patch: (props) =>
-    request({
-      ...props,
-      method: "PATCH",
-    }),
-  delete: (props) =>
-    request({
-      ...props,
+      urn,
       method: "DELETE",
     }),
 };
